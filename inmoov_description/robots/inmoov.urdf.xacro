@@ -1,0 +1,577 @@
+<?xml version="1.0"?>
+
+<robot name="inmoov" xmlns:xacro="http://ros.org/wiki/xacro">
+
+<xacro:include filename="$(find inmoov_description)/urdf/config.joints.urdf.xacro" />
+<xacro:include filename="$(find inmoov_description)/urdf/config.inertial.urdf.xacro" />
+<xacro:include filename="$(find inmoov_description)/urdf/materials.urdf.xacro" />
+<xacro:include filename="$(find inmoov_description)/urdf/inmoov.gazebo" />
+<!--<xacro:include filename="$(find inmoov_description)/urdf/kinect.gazebo" /> -->
+
+  <xacro:include filename="$(find inmoov_description)/urdf/materials.urdf.xacro" />
+  <xacro:include filename="$(find inmoov_description)/urdf/asmBase.urdf.xacro" />
+  <xacro:include filename="$(find inmoov_description)/urdf/asmTorso.urdf.xacro" />
+  <xacro:include filename="$(find inmoov_description)/urdf/asmHead.urdf.xacro" />
+  <xacro:include filename="$(find inmoov_description)/urdf/asmEye.urdf.xacro" />
+  <xacro:include filename="$(find inmoov_description)/urdf/asmFace.urdf.xacro" />
+  <xacro:include filename="$(find inmoov_description)/urdf/asmArm.urdf.xacro" />
+  <xacro:include filename="$(find inmoov_description)/urdf/asmHand.urdf.xacro" />
+ 
+ <xacro:property name="PI_2" value="1.57079632679" />
+  <xacro:property name="cameraSize" value="0.05"/>
+  <xacro:property name="cameraMass" value="0.1"/>
+   
+  <!--<link name="world"/>
+
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>-->
+
+ 
+  <!--<link name="base_footprint">
+    <inertial>
+      <mass value="0.0001" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+          iyy="0.0001" iyz="0.0" 
+          izz="0.0001" />
+    </inertial>
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.001 0.001 0.001" />
+        </geometry>
+    </visual>
+  </link>
+
+  <gazebo reference="base_footprint">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+
+  <joint name="base_footprint_joint" type="fixed">
+    <origin xyz="0 0 0.105" rpy="0 0 0" />
+    <parent link="base_footprint"/>
+    <child link="base_link" />
+  </joint> -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.75 0.75 0.1"/>
+      </geometry> 
+      <origin rpy="0 0 0" xyz="0 0 0.105"/>
+      <xacro:base_color/>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0 " rpy=" 0 0 0.105"/>
+      <mass value="12"/>
+      <inertia ixx="2.360" ixy="0.702" ixz="-0.515" iyy="2.403" iyz="0.441" izz="1.8"/>
+    </inertial>
+  </link>
+
+  <gazebo reference="base_link">
+    <selfCollide>false</selfCollide>
+  </gazebo>
+
+  
+
+  <joint name="base_to_pedestal_link" type="fixed">
+    <parent link="base_link"/>
+    <child link="pedestal_link"/>
+    <origin rpy="0 0 0"  xyz="0 0 0"/>
+  </joint>
+
+  <link name="left_wheel">
+      
+    <inertial>
+ 
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
+ 
+      <mass value="10.26"/>
+      <inertia
+        ixx="0.5"
+        ixy="0"
+        ixz="0"
+        iyy="0.3"
+        iyz="0"
+        izz="0.3" />
+    </inertial>
+
+    <collision name='collision'>
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/> 
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu1>1.0</mu1>
+            <mu2>1.0</mu2>
+            <kp>1000000.0</kp>
+            <kd>100.0</kd>
+             <minDepth>0.001</minDepth>
+             <maxVel>1.0</maxVel>
+          </ode>
+        </friction>
+     
+      </surface>
+    </collision>
+
+    <visual name='left_wheel_visual'>
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
+      <geometry>
+         <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+  </link>
+  <gazebo reference="left_wheel">
+    <selfCollide>false</selfCollide>
+ 
+  </gazebo>
+     
+
+   <joint name="left_wheel_hinge" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_wheel"/>
+    <origin rpy="0 0 0"  xyz="-0.25 -0.4 0.05"/>
+    <axis xyz="0 1 0" rpy="0 0 0" />
+ 
+    <joint_properties damping="0.001" friction="0.00001"/>
+  </joint>
+ 
+
+  <link name="right_wheel">
+      
+    <inertial>
+ 
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
+ 
+       
+      <mass value="10.26"/>
+      <inertia
+        ixx="0.5"
+        ixy="0"
+        ixz="0"
+        iyy="0.3"
+        iyz="0"
+        izz="0.3" />
+    </inertial>
+
+    <collision name='collision'>
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/> 
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+       <surface>
+        <friction>
+          <ode>
+            <mu1>1.0</mu1>
+            <mu2>1.0</mu2>
+            <kp>1000000.0</kp>
+            <kd>100.0</kd>
+            <minDepth>0.001</minDepth>
+            <maxVel>1.0</maxVel>
+          </ode>
+        </friction>
+     
+      </surface>
+    </collision>
+
+    <visual name='right_wheel_visual'>
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
+      <geometry>
+         <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+       <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+  </link>
+  <gazebo reference="right_wheel">
+    <selfCollide>false</selfCollide>
+ 
+  </gazebo>
+     
+
+   <joint name="right_wheel_hinge" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_wheel"/>
+    <origin rpy="0 0 0"  xyz="-0.25 0.4 0.05"/>
+    <axis xyz="0 1 0" rpy="0 0 0" />
+ 
+    <joint_properties damping="0.001" friction="0.00001"/>
+  </joint>
+
+  <!-- Differential drive controller --> 
+  <gazebo>
+    <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
+
+      <rosDebugLevel>Debug</rosDebugLevel>
+      <publishWheelTF>true</publishWheelTF>
+      <publishTf>1</publishTf>
+      <publishWheelJointState>true</publishWheelJointState>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>10.0</updateRate>
+      <leftJoint>left_wheel_hinge</leftJoint>
+      <rightJoint>right_wheel_hinge</rightJoint>
+      <wheelSeparation>0.8</wheelSeparation>
+      <wheelDiameter>0.2</wheelDiameter>
+      <broadcastTF>1</broadcastTF>
+      <wheelTorque>8</wheelTorque>
+      <wheelAcceleration>1</wheelAcceleration>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryTopic>odom</odometryTopic>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <legacyMode>true</legacyMode>
+    </plugin>
+  </gazebo>
+
+  <link name="right_wheel1">
+      
+    <inertial>
+ 
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
+ 
+       
+      <mass value="10.26"/>
+      <inertia
+        ixx="0.5"
+        ixy="0"
+        ixz="0"
+        iyy="0.3"
+        iyz="0"
+        izz="0.3" />
+    </inertial>
+
+    <collision name='collision'>
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/> 
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+       <surface>
+        <friction>
+          <ode>
+            <mu1>1.0</mu1>
+            <mu2>1.0</mu2>
+            <kp>1000000.0</kp>
+            <kd>100.0</kd>
+            <minDepth>0.001</minDepth>
+            <maxVel>1.0</maxVel>
+          </ode>
+        </friction>
+     
+      </surface>
+    </collision>
+
+    <visual name='right_wheel_visual'>
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
+      <geometry>
+         <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+       <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+  </link>
+  <gazebo reference="right_wheel1">
+    <selfCollide>false</selfCollide>
+ 
+  </gazebo>
+     
+
+  <joint name="right_wheel_hinge1" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_wheel1"/>
+    <origin rpy="0 0 0"  xyz="0.25 0.4 0.05"/>
+    <axis xyz="0 1 0" rpy="0 0 0" />
+ 
+    <joint_properties damping="0.001" friction="0.00001"/>
+  </joint>
+
+  <link name="left_wheel1">
+      
+    <inertial>
+ 
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
+ 
+      <mass value="10.26"/>
+      <inertia
+        ixx="0.5"
+        ixy="0"
+        ixz="0"
+        iyy="0.3"
+        iyz="0"
+        izz="0.3" />
+    </inertial>
+
+    <collision name='collision'>
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/> 
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu1>1.0</mu1>
+            <mu2>1.0</mu2>
+            <kp>1000000.0</kp>
+            <kd>100.0</kd>
+             <minDepth>0.001</minDepth>
+             <maxVel>1.0</maxVel>
+          </ode>
+        </friction>
+     
+      </surface>
+    </collision>
+
+    <visual name='left_wheel_visual'>
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
+      <geometry>
+         <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+  </link>
+  <gazebo reference="left_wheel1">
+    <selfCollide>false</selfCollide>
+ 
+  </gazebo>
+     
+
+  <joint name="left_wheel_hinge1" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_wheel1"/>
+    <origin rpy="0 0 0"  xyz="0.25 -0.4 0.05"/>
+    <axis xyz="0 1 0" rpy="0 0 0" />
+ 
+    <joint_properties damping="0.001" friction="0.00001"/>
+  </joint>
+  <gazebo>
+    <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
+
+      <rosDebugLevel>Debug</rosDebugLevel>
+      <publishWheelTF>true</publishWheelTF>
+      <publishTf>1</publishTf>
+      <publishWheelJointState>true</publishWheelJointState>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>10.0</updateRate>
+      <leftJoint>left_wheel_hinge1</leftJoint>
+      <rightJoint>right_wheel_hinge1</rightJoint>
+      <wheelSeparation>0.8</wheelSeparation>
+      <wheelDiameter>0.2</wheelDiameter>
+      <broadcastTF>1</broadcastTF>
+      <wheelTorque>8</wheelTorque>
+      <wheelAcceleration>1</wheelAcceleration>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryTopic>odom</odometryTopic>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <legacyMode>true</legacyMode>
+    </plugin>
+  </gazebo>
+
+   
+ 
+  
+
+  <link name="pedestal_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.94" radius="0.05"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.63"/>
+      <xacro:base_color/>
+    </visual>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="2.360" ixy="0.702" ixz="-0.515" iyy="2.403" iyz="0.441" izz="1.8"/>
+     </inertial>
+  </link>
+
+  <link name="head_tilt_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://inmoov_meshes/meshes/virtual.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="0 0 3.1415" xyz="0 0 0"/>
+      <xacro:frame_color/>
+    </visual>
+   <xacro:virtual_inertial/>
+   <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+     </inertial>
+  </link>
+
+  <joint name="pedestal_to_mid_stomach_joint" type="fixed">
+    <parent link="pedestal_link"/>
+    <child link="mid_stomach_link"/>
+     <origin rpy="0 0 0"  xyz="0 0 0"/>
+  </joint>
+
+  <xacro:torso covers="yes" />
+
+  <joint name="head_roll_joint" type="fixed">
+   <axis xyz="1 0 0"/>
+   <limit effort="1000.0" lower="${head_roll_joint_lower}" upper="${head_roll_joint_upper}" velocity="${head_roll_joint_velocity}" />
+   <origin rpy="0 0 3.1415" xyz="-0.0315  -0.001 0.4551"/>
+   <parent link="torso_link"/>
+   <child link="head_tilt_link"/>
+  </joint>
+
+
+  <joint name="head_tilt_joint" type="fixed">
+   <axis xyz="0 1 0"/>
+   <limit effort="1000.0" lower="${head_tilt_joint_lower}" upper="${head_tilt_joint_upper}" velocity="${head_tilt_joint_velocity}" />
+   <origin rpy="0 0 3.1415" xyz="0 0 0"/>
+   <parent link="head_tilt_link"/>
+   <child link="head_base_link"/>
+  </joint>
+
+  <xacro:head covers="yes" />
+
+  <xacro:face covers="yes" />
+
+  <joint name="face_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0637 0 0.079"/>
+    <parent link="skull_link"/>
+    <child link="face_link"/>
+  </joint>
+
+  <xacro:arm side="r" flip="1" covers="yes" />
+
+  <joint name="r_shoulder_out_joint" type="fixed">
+   <axis xyz="1 0 0"/>
+   <limit effort="1000.0" lower="${r_shoulder_out_joint_lower}" upper="${r_shoulder_out_joint_upper}" velocity="${r_shoulder_out_joint_velocity}" />
+   <origin rpy="0 0 0" xyz="0 -0.143 0.298"/>
+   <parent link="torso_link"/>
+   <child link="r_shoulder_base_link"/>
+  </joint>
+
+  <xacro:hand side="r" flip="1" covers="yes" />
+
+  <joint name="r_wrist_roll_joint" type="fixed">
+   <axis xyz="0 0 1"/>
+   <limit effort="1000.0" lower="${r_wrist_roll_joint_lower}" upper="${r_wrist_roll_joint_upper}" velocity="${r_wrist_roll_joint_velocity}" />
+   <origin rpy="0 0 0" xyz="-0.0144 0.01  -0.2885"/>
+   <parent link="r_forearm_link"/>
+   <child link="r_hand_link"/>
+  </joint>
+
+  <xacro:arm side="l" flip="-1" covers="yes" />
+
+  <joint name="l_shoulder_out_joint" type="fixed">
+   <axis xyz="1 0 0"/>
+   <limit effort="1000.0" lower="${l_shoulder_out_joint_lower}" upper="${l_shoulder_out_joint_upper}" velocity="${l_shoulder_out_joint_velocity}" />
+   <origin rpy="0 0 0" xyz="0 0.143 0.298"/>
+   <parent link="torso_link"/>
+   <child link="l_shoulder_base_link"/>
+  </joint>
+
+  <xacro:hand side="l" flip="-1" covers="yes" />
+
+  <joint name="l_wrist_roll_joint" type="fixed">
+   <axis xyz="0 0 1"/>
+   <limit effort="1000.0" lower="${l_wrist_roll_joint_lower}" upper="${l_wrist_roll_joint_upper}" velocity="${l_wrist_roll_joint_velocity}" />
+   <origin rpy="0 0 0" xyz="-0.0144 -0.01  -0.2885"/>
+   <parent link="l_forearm_link"/>
+   <child link="l_hand_link"/>
+  </joint>
+
+ <link name="camera_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 ${PI_2}"/>
+      <geometry>
+         <mesh filename="package://inmoov_description/sensor/kinect.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 ${PI_2}"/>
+      <geometry>
+        <mesh filename="package://inmoov_description/sensor/kinect.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${cameraMass}" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <box_inertia m="${cameraMass}" x="${cameraSize}" y="${cameraSize}" z="${cameraSize}" />
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <joint name="camera_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.07 0 1.35" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+  </joint>
+  <link name="camera_frame_optical"/>
+  <joint name="camera_optical_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="-${PI_2} 0 -${PI_2}"/>
+      <parent link="camera_link"/>
+      <child link="camera_frame_optical"/>
+  </joint>
+ 
+
+  
+  <gazebo reference="camera_link">
+			<sensor type="depth" name="camera_rgb_sensor">
+				<always_on>true</always_on>
+				<update_rate>1.0</update_rate>
+				<camera>
+					<horizontal_fov>1.047198</horizontal_fov>
+					<image>
+						<format>R8G8B8</format>
+						<width>640</width>
+						<height>480</height>
+					</image>
+					<clip>
+						<near>0.03</near>
+						<far>2</far>
+					</clip>
+				</camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+					<alwaysOn>true</alwaysOn>
+					<updateRate>1.0</updateRate>
+					<cameraName>camera_rgb</cameraName>
+					<imageTopicName>/camera/rgb/image_raw</imageTopicName>
+					<cameraInfoTopicName>/camera/rgb/camera_info</cameraInfoTopicName>
+					<depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
+					<depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName>
+					<pointCloudTopicName>/camera/depth_registered/points</pointCloudTopicName>
+					<frameName>camera_frame_optical</frameName>
+					<pointCloudCutoff>0.5</pointCloudCutoff>
+					<distortionK1>0.00000001</distortionK1>
+					<distortionK2>0.00000001</distortionK2>
+					<distortionK3>0.00000001</distortionK3>
+					<distortionT1>0.00000001</distortionT1>
+					<distortionT2>0.00000001</distortionT2>
+					<CxPrime>0</CxPrime>
+					<Cx>0</Cx>
+					<Cy>0</Cy>
+					<focalLength>0</focalLength>
+					<hackBaseline>0</hackBaseline>
+				</plugin>
+			</sensor>
+  </gazebo>
+  
+  
+
+ 
+
+</robot>
+

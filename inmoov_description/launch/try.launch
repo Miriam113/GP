@@ -1,0 +1,7 @@
+<launch> 
+    <node pkg="nodelet" type="nodelet" name="sonarToLaser" args="load pointcloud_to_laserscan/CloudToScan sonarPointCloud">
+ 
+ 
+    <remap from="cloud" to="/camera_link/depth/image_raw"/>
+    </node>
+</launch>

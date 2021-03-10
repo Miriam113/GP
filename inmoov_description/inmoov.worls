@@ -1,0 +1,3747 @@
+<sdf version='1.6'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose frame=''>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='inmoov'>
+      <link name='base_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1710.22</mass>
+          <inertia>
+            <ixx>10.1299</ixx>
+            <ixy>0.00179769</ixy>
+            <ixz>0.205381</ixz>
+            <iyy>4.40147</iyy>
+            <iyz>-0.000721074</iyz>
+            <izz>10.6233</izz>
+          </inertia>
+        </inertial>
+        <visual name='base_link_visual'>
+          <pose frame=''>0 0 0.055 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.11</length>
+              <radius>0.26</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__pedestal_link_visual_1'>
+          <pose frame=''>0 0 0.58 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.94</length>
+              <radius>0.0254</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__mid_stomach_link_visual_2'>
+          <pose frame=''>0 0 1.152 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/mid_stomach.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='fixed' type='fixed'>
+        <child>base_link</child>
+        <parent>world</parent>
+      </joint>
+      <link name='top_stomach_link'>
+        <pose frame=''>0 0 1.152 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.006219 0 0.012167 0 -0 0</pose>
+          <mass>1323.86</mass>
+          <inertia>
+            <ixx>7.59609</ixx>
+            <ixy>0.00452947</ixy>
+            <ixz>-0.850623</ixz>
+            <iyy>6.02008</iyy>
+            <iyz>0.00412351</iyz>
+            <izz>6.55839</izz>
+          </inertia>
+        </inertial>
+        <visual name='top_stomach_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/top_stomach.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='top_stomach_link_fixed_joint_lump__disk_link_visual_1'>
+          <pose frame=''>0.046 0 0.09 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/disk.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='waist_pan_joint' type='revolute'>
+        <child>top_stomach_link</child>
+        <parent>base_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1.5708</lower>
+            <upper>1.5708</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='torso_link'>
+        <pose frame=''>0 0 1.262 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.006283 0 0.034738 0 -0 0</pose>
+          <mass>5051.47</mass>
+          <inertia>
+            <ixx>59.8823</ixx>
+            <ixy>0.0217305</ixy>
+            <ixz>0.910314</ixz>
+            <iyy>36.9828</iyy>
+            <iyz>-0.0303415</iyz>
+            <izz>30.6053</izz>
+          </inertia>
+        </inertial>
+        <visual name='torso_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/torso.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='torso_link_fixed_joint_lump__chestplate_link_visual_1'>
+          <pose frame=''>0.042 0 0.025 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/chest.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='torso_link_fixed_joint_lump__kinect2_ir_optical_frame_visual_2'>
+          <pose frame=''>0 0 0.066 0 0 -1.57</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/kinectone.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='torso_link_fixed_joint_lump__kinect2_link_visual_3'>
+          <pose frame=''>0 0 0.066 0 0 -1.57</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/kinectone.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='torso_link_fixed_joint_lump__kinect2_rgb_optical_frame_visual_4'>
+          <pose frame=''>0 0 0.066 0 0 -1.57</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/kinectone.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay/>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='waist_roll_joint' type='revolute'>
+        <child>torso_link</child>
+        <parent>top_stomach_link</parent>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-0.261799</lower>
+            <upper>0.261799</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='head_tilt_link'>
+        <pose frame=''>-0.0315 -0.001 1.7171 0 -0 3.1415</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>0.001</mass>
+          <inertia>
+            <ixx>1.66667e-10</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1.66667e-10</iyy>
+            <iyz>0</iyz>
+            <izz>1.66667e-10</izz>
+          </inertia>
+        </inertial>
+        <visual name='head_tilt_link_visual'>
+          <pose frame=''>0 0 0 0 -0 3.1415</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/virtual.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='head_roll_joint' type='revolute'>
+        <child>head_tilt_link</child>
+        <parent>torso_link</parent>
+        <axis>
+          <xyz>-1 9.3e-05 0</xyz>
+          <limit>
+            <lower>-0.261799</lower>
+            <upper>0.261799</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='head_base_link'>
+        <pose frame=''>-0.0315 -0.001 1.7171 0 -0 -0.000185</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>43.5023</mass>
+          <inertia>
+            <ixx>0.025682</ixx>
+            <ixy>1.8291e-05</ixy>
+            <ixz>-0.000790663</ixz>
+            <iyy>0.0173272</iyy>
+            <iyz>9.60226e-06</iyz>
+            <izz>0.0353553</izz>
+          </inertia>
+        </inertial>
+        <visual name='head_base_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/head_base.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='head_tilt_joint' type='revolute'>
+        <child>head_base_link</child>
+        <parent>head_tilt_link</parent>
+        <axis>
+          <xyz>0.000185 1 0</xyz>
+          <limit>
+            <lower>-0.349066</lower>
+            <upper>0.349066</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='head_link'>
+        <pose frame=''>-0.0315 -0.001 1.7416 0 -0 -0.000185</pose>
+        <inertial>
+          <pose frame=''>0.038907 2e-06 -0.000479 0 -0 0</pose>
+          <mass>759.745</mass>
+          <inertia>
+            <ixx>3.31634</ixx>
+            <ixy>0.00668791</ixy>
+            <ixz>0.0268397</ixz>
+            <iyy>3.95281</iyy>
+            <iyz>-0.000188609</iyz>
+            <izz>3.72556</izz>
+          </inertia>
+        </inertial>
+        <visual name='head_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/head.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='head_link_fixed_joint_lump__left_ear_link_visual_1'>
+          <pose frame=''>0.035 0.056 0.0437 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/earleftv1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='head_link_fixed_joint_lump__right_ear_link_visual_2'>
+          <pose frame=''>0.035 -0.056 0.0437 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/earrightv1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='head_link_fixed_joint_lump__skull_link_visual_3'>
+          <pose frame=''>0.044 0 -0.0245 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/skull.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='head_link_fixed_joint_lump__face_link_visual_4'>
+          <pose frame=''>0.1077 0 0.0545 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/face.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <velocity_decay/>
+        <velocity_decay/>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='head_pan_joint' type='revolute'>
+        <child>head_link</child>
+        <parent>head_base_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1.74533</lower>
+            <upper>1.5708</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='jaw_link'>
+        <pose frame=''>0.006 -0.000507 1.7853 0 0.09 -0.000185</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>58.7673</mass>
+          <inertia>
+            <ixx>0.147272</ixx>
+            <ixy>7.55328e-05</ixy>
+            <ixz>0.0550602</ixz>
+            <iyy>0.134112</iyy>
+            <iyz>-1.21598e-05</iyz>
+            <izz>0.156998</izz>
+          </inertia>
+        </inertial>
+        <visual name='jaw_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/jaw.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='jaw_joint' type='revolute'>
+        <child>jaw_link</child>
+        <parent>head_link</parent>
+        <axis>
+          <xyz>0.000185 1 0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.0872665</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='eyesupport_link'>
+        <pose frame=''>0.0762 -0.00102 1.7961 0 -0 -0.000185</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>27.5503</mass>
+          <inertia>
+            <ixx>0.0206326</ixx>
+            <ixy>0.000285302</ixy>
+            <ixz>-0.0014003</ixz>
+            <iyy>0.0167635</iyy>
+            <iyz>0.00183966</iyz>
+            <izz>0.0069817</izz>
+          </inertia>
+        </inertial>
+        <visual name='eyesupport_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/eyesupport.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='eyes_tilt_joint' type='revolute'>
+        <child>eyesupport_link</child>
+        <parent>head_link</parent>
+        <axis>
+          <xyz>0.000185 1 0</xyz>
+          <limit>
+            <lower>-0.261799</lower>
+            <upper>0.261799</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_eyesupport_link'>
+        <pose frame=''>0.076206 0.03198 1.7925 0 -0 -0.000185</pose>
+        <inertial>
+          <pose frame=''>0.000911 0 0 0 -0 0</pose>
+          <mass>19.5228</mass>
+          <inertia>
+            <ixx>0.00367278</ixx>
+            <ixy>6.25877e-06</ixy>
+            <ixz>-1.98246e-05</ixz>
+            <iyy>0.00241887</iyy>
+            <iyz>0.000157826</iyz>
+            <izz>0.00166483</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_eyesupport_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_eyesupport.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='r_eyesupport_link_fixed_joint_lump__r_camera_link_visual_1'>
+          <pose frame=''>-0.001 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/camera.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='r_eyesupport_link_fixed_joint_lump__r_eye_link_visual_2'>
+          <pose frame=''>0.003 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/eye.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='r_eyesupport_link_fixed_joint_lump__r_iris_link_visual_3'>
+          <pose frame=''>0.0061 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/iris.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/SkyBlue</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <velocity_decay/>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='eyes_pan_joint' type='revolute'>
+        <child>r_eyesupport_link</child>
+        <parent>eyesupport_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-0.523599</lower>
+            <upper>0.523599</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_eyesupport_link'>
+        <pose frame=''>0.076194 -0.03402 1.7925 0 -0 -0.000185</pose>
+        <inertial>
+          <pose frame=''>0.000911 0 0 0 -0 0</pose>
+          <mass>19.5228</mass>
+          <inertia>
+            <ixx>0.00367278</ixx>
+            <ixy>-7.61396e-06</ixy>
+            <ixz>-1.98245e-05</ixz>
+            <iyy>0.00241887</iyy>
+            <iyz>-0.000163916</iyz>
+            <izz>0.00166483</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_eyesupport_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_eyesupport.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='l_eyesupport_link_fixed_joint_lump__l_camera_link_visual_1'>
+          <pose frame=''>-0.001 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/camera.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='l_eyesupport_link_fixed_joint_lump__l_eye_link_visual_2'>
+          <pose frame=''>0.003 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/eye.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='l_eyesupport_link_fixed_joint_lump__l_iris_link_visual_3'>
+          <pose frame=''>0.0061 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/iris.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/SkyBlue</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <velocity_decay/>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_eye_pan_joint' type='revolute'>
+        <child>l_eyesupport_link</child>
+        <parent>eyesupport_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-0.523599</lower>
+            <upper>0.523599</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_shoulder_base_link'>
+        <pose frame=''>0 0.143 1.56 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>266.527</mass>
+          <inertia>
+            <ixx>0.35041</ixx>
+            <ixy>0.00573516</ixy>
+            <ixz>-0.0111938</ixz>
+            <iyy>0.390886</iyy>
+            <iyz>-0.0454475</iyz>
+            <izz>0.271459</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_shoulder_base_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_shoulder_base.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_shoulder_out_joint' type='revolute'>
+        <child>l_shoulder_base_link</child>
+        <parent>torso_link</parent>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>0.0872665</lower>
+            <upper>1.0472</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_shoulder_link'>
+        <pose frame=''>0 0.155 1.52 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>322.443</mass>
+          <inertia>
+            <ixx>0.601346</ixx>
+            <ixy>-0.00343774</ixy>
+            <ixz>-0.0117619</ixz>
+            <iyy>0.473866</iyy>
+            <iyz>0.114277</iyz>
+            <izz>0.500952</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_shoulder_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_shoulder.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_shoulder_lift_joint' type='revolute'>
+        <child>l_shoulder_link</child>
+        <parent>l_shoulder_base_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-2.35619</lower>
+            <upper>0.785398</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_bicep_link'>
+        <pose frame=''>0 0.221 1.46 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>458.182</mass>
+          <inertia>
+            <ixx>1.81971</ixx>
+            <ixy>0.000765751</ixy>
+            <ixz>-0.293866</ixz>
+            <iyy>2.02506</iyy>
+            <iyz>0.00122116</iyz>
+            <izz>0.858538</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_bicep_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/bicep.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='l_bicep_link_fixed_joint_lump__l_bicepcover_link_visual_1'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/bicepcover.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_upper_arm_roll_joint' type='revolute'>
+        <child>l_bicep_link</child>
+        <parent>l_shoulder_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1.5708</lower>
+            <upper>1.5708</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_forearm_link'>
+        <pose frame=''>-0.0278 0.221 1.2365 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>401.767</mass>
+          <inertia>
+            <ixx>3.24231</ixx>
+            <ixy>-0.0500112</ixy>
+            <ixz>-0.143185</ixz>
+            <iyy>3.24251</iyy>
+            <iyz>-0.086289</iyz>
+            <izz>0.584588</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_forearm_link_visual'>
+          <pose frame=''>-0.001 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_forearm.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_elbow_flex_joint' type='revolute'>
+        <child>l_forearm_link</child>
+        <parent>l_bicep_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1.48353</lower>
+            <upper>-0.261799</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_hand_link'>
+        <pose frame=''>-0.0422 0.211 0.948 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.002905 -0.006198 -0.031537 0 -0 0</pose>
+          <mass>123.455</mass>
+          <inertia>
+            <ixx>0.437976</ixx>
+            <ixy>0.0045062</ixy>
+            <ixz>0.0229212</ixz>
+            <iyy>0.386335</iyy>
+            <iyz>-0.0822927</iyz>
+            <izz>0.0623986</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_hand_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_hand.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='l_hand_link_fixed_joint_lump__l_handcover_link_visual_1'>
+          <pose frame=''>0.009 -0.0192 -0.0977 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_cover_hand.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_wrist_roll_joint' type='revolute'>
+        <child>l_hand_link</child>
+        <parent>l_forearm_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>3.14159</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_index1_link'>
+        <pose frame=''>-0.0437 0.1768 0.829 -0.1 0 0</pose>
+        <inertial>
+          <pose frame=''>0.001789 0 -0.003024 0 -0 0</pose>
+          <mass>6.48992</mass>
+          <inertia>
+            <ixx>0.00113089</ixx>
+            <ixy>-1.47786e-07</ixy>
+            <ixz>0.000107694</ixz>
+            <iyy>0.00111502</iyy>
+            <iyz>2.1947e-06</iyz>
+            <izz>0.000323676</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_index1_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/index3_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='l_index1_link_fixed_joint_lump__l_cover_index_link_visual_1'>
+          <pose frame=''>0.0071 0 -0.012 0 -0.05 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_cover_index.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_index1_joint' type='revolute'>
+        <child>l_index1_link</child>
+        <parent>l_hand_link</parent>
+        <axis>
+          <xyz>0 0.995004 -0.099833</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_index2_link'>
+        <pose frame=''>-0.0437 0.174206 0.79313 -0.1 0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>2.91155</mass>
+          <inertia>
+            <ixx>0.000247698</ixx>
+            <ixy>5.31054e-09</ixy>
+            <ixz>-1.36151e-05</ixz>
+            <iyy>0.000244508</iyy>
+            <iyz>7.01601e-07</iyz>
+            <izz>9.10515e-05</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_index2_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/index3_2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_index_joint' type='revolute'>
+        <child>l_index2_link</child>
+        <parent>l_index1_link</parent>
+        <axis>
+          <xyz>0 0.995004 -0.099833</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_index3_link'>
+        <pose frame=''>-0.0437 0.17181 0.76925 -0.1 0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>2.75476</mass>
+          <inertia>
+            <ixx>0.000240288</ixx>
+            <ixy>2.60715e-08</ixy>
+            <ixz>-1.39734e-05</ixz>
+            <iyy>0.000244507</iyy>
+            <iyz>8.40886e-08</iyz>
+            <izz>7.25365e-05</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_index3_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/index3_3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_index3_joint' type='revolute'>
+        <child>l_index3_link</child>
+        <parent>l_index2_link</parent>
+        <axis>
+          <xyz>0 0.995004 -0.099833</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_middle1_link'>
+        <pose frame=''>-0.04395 0.204 0.82475 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.001713 0 -0.002896 0 -0 0</pose>
+          <mass>7.89261</mass>
+          <inertia>
+            <ixx>0.00155465</ixx>
+            <ixy>3.30019e-08</ixy>
+            <ixz>0.000108837</ixz>
+            <iyy>0.00152524</iyy>
+            <iyz>2.3153e-06</iyz>
+            <izz>0.000444252</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_middle1_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/middle3_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='l_middle1_link_fixed_joint_lump__l_cover_middle_link_visual_1'>
+          <pose frame=''>0.0071 0 -0.012 0 0.05 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_cover_middle.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_middle1_joint' type='revolute'>
+        <child>l_middle1_link</child>
+        <parent>l_hand_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_middle2_link'>
+        <pose frame=''>-0.04395 0.204 0.78585 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>3.58854</mass>
+          <inertia>
+            <ixx>0.000350951</ixx>
+            <ixy>1.96666e-08</ixy>
+            <ixz>-1.94343e-05</ixz>
+            <iyy>0.000346446</iyy>
+            <iyz>1.21476e-06</iyz>
+            <izz>0.000129023</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_middle2_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/middle3_2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_middle_joint' type='revolute'>
+        <child>l_middle2_link</child>
+        <parent>l_middle1_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_middle3_link'>
+        <pose frame=''>-0.04395 0.2045 0.75995 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>3.39529</mass>
+          <inertia>
+            <ixx>0.000340451</ixx>
+            <ixy>3.21711e-08</ixy>
+            <ixz>-1.97078e-05</ixz>
+            <iyy>0.000346419</iyy>
+            <iyz>2.62807e-08</iyz>
+            <izz>0.000102764</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_middle3_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/middle3_3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_middle3_joint' type='revolute'>
+        <child>l_middle3_link</child>
+        <parent>l_middle2_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_pinky1_link'>
+        <pose frame=''>-0.0422 0.238 0.8925 -0.7 0 0</pose>
+        <inertial>
+          <pose frame=''>0.00207 0.004192 -0.00147 0 -0 0</pose>
+          <mass>18.7807</mass>
+          <inertia>
+            <ixx>0.00651325</ixx>
+            <ixy>-0.000660652</ixy>
+            <ixz>0.000252076</ixz>
+            <iyy>0.00295866</iyy>
+            <iyz>0.00187097</iyz>
+            <izz>0.00509031</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_pinky1_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_pinky3_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='l_pinky1_link_fixed_joint_lump__l_cover_handpinky_link_visual_1'>
+          <pose frame=''>0.01 0.02025 -0.0071 0.7 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_cover_handpinky.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_pinky1_joint' type='revolute'>
+        <child>l_pinky1_link</child>
+        <parent>l_hand_link</parent>
+        <axis>
+          <xyz>0 0.644218 0.764842</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_pinky2_link'>
+        <pose frame=''>-0.0422 0.258495 0.845428 0.23 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.001481 0 -0.003111 0 -0 0</pose>
+          <mass>4.33953</mass>
+          <inertia>
+            <ixx>0.000570603</ixx>
+            <ixy>-2.38532e-07</ixy>
+            <ixz>4.01e-05</ixz>
+            <iyy>0.000552639</iyy>
+            <iyz>-3.22853e-06</iyz>
+            <izz>0.000154118</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_pinky2_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/pinky3_2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='l_pinky2_link_fixed_joint_lump__l_cover_pinky_link_visual_1'>
+          <pose frame=''>0.005 0 -0.0105 -0.1 0.05 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_cover_pinky.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_pinky_joint' type='revolute'>
+        <child>l_pinky2_link</child>
+        <parent>l_pinky1_link</parent>
+        <axis>
+          <xyz>0 0.973666 0.227978</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_pinky3_link'>
+        <pose frame=''>-0.0422 0.266049 0.815358 0.23 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1.84871</mass>
+          <inertia>
+            <ixx>0.000116124</ixx>
+            <ixy>1.60776e-08</ixy>
+            <ixz>-6.39316e-06</ixz>
+            <iyy>0.000114666</iyy>
+            <iyz>3.92228e-07</iyz>
+            <izz>4.27152e-05</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_pinky3_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/pinky3_3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_pinky3_joint' type='revolute'>
+        <child>l_pinky3_link</child>
+        <parent>l_pinky2_link</parent>
+        <axis>
+          <xyz>0 0.973666 0.227978</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_pinky4_link'>
+        <pose frame=''>-0.0422 0.27118 0.795197 0.23 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1.74822</mass>
+          <inertia>
+            <ixx>0.000112612</ixx>
+            <ixy>1.06552e-08</ixy>
+            <ixz>-6.5188e-06</ixz>
+            <iyy>0.000114587</iyy>
+            <iyz>8.84516e-09</iyz>
+            <izz>3.39916e-05</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_pinky4_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/pinky3_4.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_pinky4_joint' type='revolute'>
+        <child>l_pinky4_link</child>
+        <parent>l_pinky3_link</parent>
+        <axis>
+          <xyz>0 0.973666 0.227978</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_ring1_link'>
+        <pose frame=''>-0.0422 0.21805 0.8686 -0.7 0 0</pose>
+        <inertial>
+          <pose frame=''>0.002205 0.003675 -0.000196 0 -0 0</pose>
+          <mass>14.3178</mass>
+          <inertia>
+            <ixx>0.00342039</ixx>
+            <ixy>-0.000378159</ixy>
+            <ixz>3.87629e-05</ixz>
+            <iyy>0.00170049</iyy>
+            <iyz>0.000522183</iyz>
+            <izz>0.00283458</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_ring1_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_ring3_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='l_ring1_link_fixed_joint_lump__l_cover_handring_link_visual_1'>
+          <pose frame=''>0.009 0.015 -0.0008 0.7 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_cover_handring.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_ring1_joint' type='revolute'>
+        <child>l_ring1_link</child>
+        <parent>l_hand_link</parent>
+        <axis>
+          <xyz>0 0.644218 0.764842</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_ring2_link'>
+        <pose frame=''>-0.04094 0.234202 0.833292 0.0775 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.001289 0 -0.002836 0 -0 0</pose>
+          <mass>5.68946</mass>
+          <inertia>
+            <ixx>0.000900616</ixx>
+            <ixy>-3.23452e-07</ixy>
+            <ixz>5.11462e-05</ixz>
+            <iyy>0.000867472</iyy>
+            <iyz>-4.33978e-06</iyz>
+            <izz>0.000238716</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_ring2_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/ring3_2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='l_ring2_link_fixed_joint_lump__l_cover_ring_link_visual_1'>
+          <pose frame=''>0.005 0 -0.011 -0.1 0.05 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_cover_ring.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_ring_joint' type='revolute'>
+        <child>l_ring2_link</child>
+        <parent>l_ring1_link</parent>
+        <axis>
+          <xyz>0 0.996998 0.077422</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_ring3_link'>
+        <pose frame=''>-0.04094 0.237372 0.798934 0.0775 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>2.53</mass>
+          <inertia>
+            <ixx>0.000195998</ixx>
+            <ixy>1.0987e-08</ixy>
+            <ixz>-1.08538e-05</ixz>
+            <iyy>0.000193482</iyy>
+            <iyz>6.78438e-07</iyz>
+            <izz>7.20562e-05</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_ring3_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/ring3_3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_ring3_joint' type='revolute'>
+        <child>l_ring3_link</child>
+        <parent>l_ring2_link</parent>
+        <axis>
+          <xyz>0 0.996998 0.077422</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_ring4_link'>
+        <pose frame=''>-0.04094 0.239543 0.776134 0.0775 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>2.39376</mass>
+          <inertia>
+            <ixx>0.000190134</ixx>
+            <ixy>1.79695e-08</ixy>
+            <ixz>-1.10063e-05</ixz>
+            <iyy>0.000193467</iyy>
+            <iyz>1.47005e-08</iyz>
+            <izz>5.73911e-05</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_ring4_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/ring3_4.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_ring4_joint' type='revolute'>
+        <child>l_ring4_link</child>
+        <parent>l_ring3_link</parent>
+        <axis>
+          <xyz>0 0.996998 0.077422</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_thumb1_link'>
+        <pose frame=''>-0.0422 0.182 0.8903 -0.1 0 0</pose>
+        <inertial>
+          <pose frame=''>0.002445 -0.005195 0.001149 0 -0 0</pose>
+          <mass>13.2946</mass>
+          <inertia>
+            <ixx>0.00345101</ixx>
+            <ixy>0.000566922</ixy>
+            <ixz>-6.61389e-05</ixz>
+            <iyy>0.00196178</iyy>
+            <iyz>-6.32366e-05</iyz>
+            <izz>0.00265809</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_thumb1_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_thumb5_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='l_thumb1_link_fixed_joint_lump__l_cover_thumb_link_visual_1'>
+          <pose frame=''>0.01 -0.02125 0.0047 -0.05 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/l_cover_thumb.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_thumb1_joint' type='revolute'>
+        <child>l_thumb1_link</child>
+        <parent>l_hand_link</parent>
+        <axis>
+          <xyz>0 0.099833 0.995004</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.13446</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_thumb2_link'>
+        <pose frame=''>-0.04272 0.153588 0.880085 -0.921323 -0.129048 -0.288983</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>7.51105</mass>
+          <inertia>
+            <ixx>0.00130424</ixx>
+            <ixy>2.49766e-07</ixy>
+            <ixz>4.2292e-06</ixz>
+            <iyy>0.00116962</iyy>
+            <iyz>9.06594e-07</iyz>
+            <izz>0.000555691</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_thumb2_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/thumb5_2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_thumb_joint' type='revolute'>
+        <child>l_thumb2_link</child>
+        <parent>l_thumb1_link</parent>
+        <axis>
+          <xyz>0.270584 0.550483 -0.78978</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.13446</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='l_thumb3_link'>
+        <pose frame=''>-0.048053 0.126094 0.859095 -0.921323 -0.129048 -0.288983</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>5.81255</mass>
+          <inertia>
+            <ixx>0.00071499</ixx>
+            <ixy>-4.41942e-07</ixy>
+            <ixz>-5.52909e-05</ixz>
+            <iyy>0.000735457</iyy>
+            <iyz>4.97619e-07</iyz>
+            <izz>0.000260508</izz>
+          </inertia>
+        </inertial>
+        <visual name='l_thumb3_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/thumb5_3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='l_thumb3_joint' type='revolute'>
+        <child>l_thumb3_link</child>
+        <parent>l_thumb2_link</parent>
+        <axis>
+          <xyz>0.270584 0.550483 -0.78978</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.13446</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_shoulder_base_link'>
+        <pose frame=''>0 -0.143 1.56 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>266.527</mass>
+          <inertia>
+            <ixx>0.35041</ixx>
+            <ixy>-0.00573516</ixy>
+            <ixz>-0.0111938</ixz>
+            <iyy>0.390886</iyy>
+            <iyz>0.0454475</iyz>
+            <izz>0.271459</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_shoulder_base_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_shoulder_base.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_shoulder_out_joint' type='revolute'>
+        <child>r_shoulder_base_link</child>
+        <parent>torso_link</parent>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-1.0472</lower>
+            <upper>-0.0872665</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_shoulder_link'>
+        <pose frame=''>0 -0.155 1.52 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>322.443</mass>
+          <inertia>
+            <ixx>0.601346</ixx>
+            <ixy>0.00343773</ixy>
+            <ixz>-0.0117619</ixz>
+            <iyy>0.473866</iyy>
+            <iyz>-0.114277</iyz>
+            <izz>0.500952</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_shoulder_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_shoulder.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_shoulder_lift_joint' type='revolute'>
+        <child>r_shoulder_link</child>
+        <parent>r_shoulder_base_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-2.35619</lower>
+            <upper>0.785398</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_bicep_link'>
+        <pose frame=''>0 -0.221 1.46 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>458.182</mass>
+          <inertia>
+            <ixx>1.81971</ixx>
+            <ixy>0.000765751</ixy>
+            <ixz>-0.293866</ixz>
+            <iyy>2.02506</iyy>
+            <iyz>0.00122116</iyz>
+            <izz>0.858538</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_bicep_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/bicep.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='r_bicep_link_fixed_joint_lump__r_bicepcover_link_visual_1'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/bicepcover.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_upper_arm_roll_joint' type='revolute'>
+        <child>r_bicep_link</child>
+        <parent>r_shoulder_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1.5708</lower>
+            <upper>1.5708</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_forearm_link'>
+        <pose frame=''>-0.0278 -0.221 1.2365 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>401.767</mass>
+          <inertia>
+            <ixx>3.24231</ixx>
+            <ixy>0.0500112</ixy>
+            <ixz>-0.143185</ixz>
+            <iyy>3.24251</iyy>
+            <iyz>0.086289</iyz>
+            <izz>0.584588</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_forearm_link_visual'>
+          <pose frame=''>0.001 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_forearm.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_elbow_flex_joint' type='revolute'>
+        <child>r_forearm_link</child>
+        <parent>r_bicep_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1.39626</lower>
+            <upper>-0.261799</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_hand_link'>
+        <pose frame=''>-0.0422 -0.211 0.948 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.002905 0.006198 -0.031537 0 -0 0</pose>
+          <mass>123.455</mass>
+          <inertia>
+            <ixx>0.437976</ixx>
+            <ixy>-0.00450619</ixy>
+            <ixz>0.0229212</ixz>
+            <iyy>0.386335</iyy>
+            <iyz>0.0822927</iyz>
+            <izz>0.0623986</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_hand_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_hand.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='r_hand_link_fixed_joint_lump__r_handcover_link_visual_1'>
+          <pose frame=''>0.009 0.0192 -0.0977 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_cover_hand.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_wrist_roll_joint' type='revolute'>
+        <child>r_hand_link</child>
+        <parent>r_forearm_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-3.14159</lower>
+            <upper>0</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_index1_link'>
+        <pose frame=''>-0.0437 -0.1768 0.829 0.1 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.001789 0 -0.003024 0 -0 0</pose>
+          <mass>6.48992</mass>
+          <inertia>
+            <ixx>0.00112777</ixx>
+            <ixy>-1.49658e-07</ixy>
+            <ixz>9.45686e-05</ixz>
+            <iyy>0.00111502</iyy>
+            <iyz>7.98428e-07</iyz>
+            <izz>0.000326798</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_index1_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/index3_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='r_index1_link_fixed_joint_lump__r_cover_index_link_visual_1'>
+          <pose frame=''>0.0071 0 -0.012 0 0.05 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_cover_index.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_index1_joint' type='revolute'>
+        <child>r_index1_link</child>
+        <parent>r_hand_link</parent>
+        <axis>
+          <xyz>0 0.995004 0.099833</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_index2_link'>
+        <pose frame=''>-0.0437 -0.172216 0.793329 0.1 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>2.91155</mass>
+          <inertia>
+            <ixx>0.000247698</ixx>
+            <ixy>5.31054e-09</ixy>
+            <ixz>-1.36151e-05</ixz>
+            <iyy>0.000244508</iyy>
+            <iyz>7.01601e-07</iyz>
+            <izz>9.10515e-05</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_index2_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/index3_2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_index_joint' type='revolute'>
+        <child>r_index2_link</child>
+        <parent>r_index1_link</parent>
+        <axis>
+          <xyz>0 0.995004 0.099833</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_index3_link'>
+        <pose frame=''>-0.0437 -0.16982 0.769449 0.1 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>2.75476</mass>
+          <inertia>
+            <ixx>0.000240288</ixx>
+            <ixy>2.60715e-08</ixy>
+            <ixz>-1.39734e-05</ixz>
+            <iyy>0.000244507</iyy>
+            <iyz>8.40886e-08</iyz>
+            <izz>7.25365e-05</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_index3_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/index3_3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_index3_joint' type='revolute'>
+        <child>r_index3_link</child>
+        <parent>r_index2_link</parent>
+        <axis>
+          <xyz>0 0.995004 0.099833</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_middle1_link'>
+        <pose frame=''>-0.04395 -0.204 0.82475 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.001713 0 -0.002896 0 -0 0</pose>
+          <mass>7.89261</mass>
+          <inertia>
+            <ixx>0.00155913</ixx>
+            <ixy>9.04308e-09</ixy>
+            <ixz>0.000127538</ixz>
+            <iyy>0.00152524</iyy>
+            <iyz>4.27017e-07</iyz>
+            <izz>0.000439776</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_middle1_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/middle3_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='r_middle1_link_fixed_joint_lump__r_cover_middle_link_visual_1'>
+          <pose frame=''>0.0071 0 -0.012 0 -0.05 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_cover_middle.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_middle1_joint' type='revolute'>
+        <child>r_middle1_link</child>
+        <parent>r_hand_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_middle2_link'>
+        <pose frame=''>-0.04395 -0.204 0.78585 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>3.58854</mass>
+          <inertia>
+            <ixx>0.000350951</ixx>
+            <ixy>1.96666e-08</ixy>
+            <ixz>-1.94343e-05</ixz>
+            <iyy>0.000346446</iyy>
+            <iyz>1.21476e-06</iyz>
+            <izz>0.000129023</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_middle2_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/middle3_2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_middle_joint' type='revolute'>
+        <child>r_middle2_link</child>
+        <parent>r_middle1_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_middle3_link'>
+        <pose frame=''>-0.04395 -0.2035 0.75995 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>3.39529</mass>
+          <inertia>
+            <ixx>0.000340451</ixx>
+            <ixy>3.21711e-08</ixy>
+            <ixz>-1.97078e-05</ixz>
+            <iyy>0.000346419</iyy>
+            <iyz>2.62807e-08</iyz>
+            <izz>0.000102764</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_middle3_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/middle3_3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_middle3_joint' type='revolute'>
+        <child>r_middle3_link</child>
+        <parent>r_middle2_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_pinky1_link'>
+        <pose frame=''>-0.0422 -0.238 0.8925 0.7 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.00207 -0.004192 -0.00147 0 -0 0</pose>
+          <mass>18.7807</mass>
+          <inertia>
+            <ixx>0.00651325</ixx>
+            <ixy>0.000660652</ixy>
+            <ixz>0.000252076</ixz>
+            <iyy>0.00295866</iyy>
+            <iyz>-0.00187097</iyz>
+            <izz>0.00509031</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_pinky1_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_pinky3_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='r_pinky1_link_fixed_joint_lump__r_cover_handpinky_link_visual_1'>
+          <pose frame=''>0.01 -0.02025 -0.0071 -0.7 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_cover_handpinky.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_pinky1_joint' type='revolute'>
+        <child>r_pinky1_link</child>
+        <parent>r_hand_link</parent>
+        <axis>
+          <xyz>0 -0.644218 0.764842</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_pinky2_link'>
+        <pose frame=''>-0.0422 -0.258495 0.845428 -0.23 0 0</pose>
+        <inertial>
+          <pose frame=''>0.001481 0 -0.003111 0 -0 0</pose>
+          <mass>4.33953</mass>
+          <inertia>
+            <ixx>0.000572439</ixx>
+            <ixy>-2.11284e-07</ixy>
+            <ixz>4.85605e-05</ixz>
+            <iyy>0.000552639</iyy>
+            <iyz>4.54571e-06</iyz>
+            <izz>0.000152282</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_pinky2_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/pinky3_2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='r_pinky2_link_fixed_joint_lump__r_cover_pinky_link_visual_1'>
+          <pose frame=''>0.005 0 -0.0105 0.1 -0.05 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_cover_pinky.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_pinky_joint' type='revolute'>
+        <child>r_pinky2_link</child>
+        <parent>r_pinky1_link</parent>
+        <axis>
+          <xyz>0 0.973666 -0.227978</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_pinky3_link'>
+        <pose frame=''>-0.0422 -0.265075 0.81513 -0.23 0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1.84871</mass>
+          <inertia>
+            <ixx>0.000116124</ixx>
+            <ixy>1.60776e-08</ixy>
+            <ixz>-6.39316e-06</ixz>
+            <iyy>0.000114666</iyy>
+            <iyz>3.92228e-07</iyz>
+            <izz>4.27152e-05</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_pinky3_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/pinky3_3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_pinky3_joint' type='revolute'>
+        <child>r_pinky3_link</child>
+        <parent>r_pinky2_link</parent>
+        <axis>
+          <xyz>0 0.973666 -0.227978</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_pinky4_link'>
+        <pose frame=''>-0.0422 -0.269428 0.794786 -0.23 0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1.74822</mass>
+          <inertia>
+            <ixx>0.000112612</ixx>
+            <ixy>1.06552e-08</ixy>
+            <ixz>-6.5188e-06</ixz>
+            <iyy>0.000114587</iyy>
+            <iyz>8.84516e-09</iyz>
+            <izz>3.39916e-05</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_pinky4_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/pinky3_4.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_pinky4_joint' type='revolute'>
+        <child>r_pinky4_link</child>
+        <parent>r_pinky3_link</parent>
+        <axis>
+          <xyz>0 0.973666 -0.227978</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_ring1_link'>
+        <pose frame=''>-0.0422 -0.21805 0.8686 0.7 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.002205 -0.003675 -0.000196 0 -0 0</pose>
+          <mass>14.3178</mass>
+          <inertia>
+            <ixx>0.00342039</ixx>
+            <ixy>0.000378159</ixy>
+            <ixz>3.87629e-05</ixz>
+            <iyy>0.00170049</iyy>
+            <iyz>-0.000522183</iyz>
+            <izz>0.00283458</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_ring1_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_ring3_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='r_ring1_link_fixed_joint_lump__r_cover_handring_link_visual_1'>
+          <pose frame=''>0.009 -0.015 -0.0008 -0.7 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_cover_handring.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_ring1_joint' type='revolute'>
+        <child>r_ring1_link</child>
+        <parent>r_hand_link</parent>
+        <axis>
+          <xyz>0 -0.644218 0.764842</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_ring2_link'>
+        <pose frame=''>-0.04094 -0.234202 0.833292 -0.0775 0 0</pose>
+        <inertial>
+          <pose frame=''>0.001289 0 -0.002836 0 -0 0</pose>
+          <mass>5.68946</mass>
+          <inertia>
+            <ixx>0.000903199</ixx>
+            <ixy>-1.72799e-07</ixy>
+            <ixz>6.28713e-05</ixz>
+            <iyy>0.000867472</iyy>
+            <iyz>5.80691e-06</iyz>
+            <izz>0.000236133</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_ring2_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/ring3_2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='r_ring2_link_fixed_joint_lump__r_cover_ring_link_visual_1'>
+          <pose frame=''>0.005 0 -0.011 0.1 -0.05 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_cover_ring.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_ring_joint' type='revolute'>
+        <child>r_ring2_link</child>
+        <parent>r_ring1_link</parent>
+        <axis>
+          <xyz>0 0.996998 -0.077422</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_ring3_link'>
+        <pose frame=''>-0.04094 -0.236375 0.798856 -0.0775 0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>2.53</mass>
+          <inertia>
+            <ixx>0.000195998</ixx>
+            <ixy>1.0987e-08</ixy>
+            <ixz>-1.08538e-05</ixz>
+            <iyy>0.000193482</iyy>
+            <iyz>6.78438e-07</iyz>
+            <izz>7.20562e-05</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_ring3_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/ring3_3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_ring3_joint' type='revolute'>
+        <child>r_ring3_link</child>
+        <parent>r_ring2_link</parent>
+        <axis>
+          <xyz>0 0.996998 -0.077422</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_ring4_link'>
+        <pose frame=''>-0.04094 -0.237749 0.775994 -0.0775 0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>2.39376</mass>
+          <inertia>
+            <ixx>0.000190134</ixx>
+            <ixy>1.79695e-08</ixy>
+            <ixz>-1.10063e-05</ixz>
+            <iyy>0.000193467</iyy>
+            <iyz>1.47005e-08</iyz>
+            <izz>5.73911e-05</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_ring4_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/ring3_4.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_ring4_joint' type='revolute'>
+        <child>r_ring4_link</child>
+        <parent>r_ring3_link</parent>
+        <axis>
+          <xyz>0 0.996998 -0.077422</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.48353</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_thumb1_link'>
+        <pose frame=''>-0.0422 -0.182 0.8903 0.1 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.002445 0.005195 0.001149 0 -0 0</pose>
+          <mass>13.2946</mass>
+          <inertia>
+            <ixx>0.00345101</ixx>
+            <ixy>-0.000566922</ixy>
+            <ixz>-6.61389e-05</ixz>
+            <iyy>0.00196178</iyy>
+            <iyz>6.32365e-05</iyz>
+            <izz>0.00265809</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_thumb1_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_thumb5_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='r_thumb1_link_fixed_joint_lump__r_cover_thumb_link_visual_1'>
+          <pose frame=''>0.01 0.02125 0.0047 0.05 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/r_cover_thumb.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_thumb1_joint' type='revolute'>
+        <child>r_thumb1_link</child>
+        <parent>r_hand_link</parent>
+        <axis>
+          <xyz>0 -0.099833 0.995004</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.13446</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_thumb2_link'>
+        <pose frame=''>-0.04272 -0.153588 0.880085 0.921323 -0.129048 0.288983</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>7.51105</mass>
+          <inertia>
+            <ixx>0.00130424</ixx>
+            <ixy>2.49766e-07</ixy>
+            <ixz>4.2292e-06</ixz>
+            <iyy>0.00116962</iyy>
+            <iyz>9.06594e-07</iyz>
+            <izz>0.000555691</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_thumb2_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/thumb5_2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_thumb_joint' type='revolute'>
+        <child>r_thumb2_link</child>
+        <parent>r_thumb1_link</parent>
+        <axis>
+          <xyz>-0.270584 0.550483 0.78978</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.13446</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='r_thumb3_link'>
+        <pose frame=''>-0.048053 -0.126094 0.859095 0.921323 -0.129048 0.288983</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>5.81255</mass>
+          <inertia>
+            <ixx>0.00071499</ixx>
+            <ixy>-4.41942e-07</ixy>
+            <ixz>-5.52909e-05</ixz>
+            <iyy>0.000735457</iyy>
+            <iyz>4.97619e-07</iyz>
+            <izz>0.000260508</izz>
+          </inertia>
+        </inertial>
+        <visual name='r_thumb3_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/miriam/inmoov/src/inmoov_ros-master/inmoov_meshes/meshes/thumb5_3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='r_thumb3_joint' type='revolute'>
+        <child>r_thumb3_link</child>
+        <parent>r_thumb2_link</parent>
+        <axis>
+          <xyz>-0.270584 0.550483 0.78978</xyz>
+          <limit>
+            <lower>-0.0872665</lower>
+            <upper>1.13446</upper>
+            <effort>1000</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <static>0</static>
+      <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
+        <robotNamespace>/inmoov</robotNamespace>
+        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      </plugin>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+    </model>
+    <state world_name='default'>
+      <sim_time>0 0</sim_time>
+      <real_time>0 0</real_time>
+      <wall_time>1612913230 896687509</wall_time>
+      <iterations>0</iterations>
+      <model name='ground_plane'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='inmoov'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='base_link'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='eyesupport_link'>
+          <pose frame=''>0.0762 -0.00102 1.7961 0 0 -0.000185</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='head_base_link'>
+          <pose frame=''>-0.0315 -0.001 1.7171 0 0 -0.000185</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='head_link'>
+          <pose frame=''>-0.0315 -0.001 1.7416 0 0 -0.000185</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='head_tilt_link'>
+          <pose frame=''>-0.0315 -0.001 1.7171 0 -0 3.1415</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='jaw_link'>
+          <pose frame=''>0.006 -0.000507 1.7853 0 0.09 -0.000185</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_bicep_link'>
+          <pose frame=''>0 0.221 1.46 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_eyesupport_link'>
+          <pose frame=''>0.076194 -0.03402 1.7925 0 0 -0.000185</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_forearm_link'>
+          <pose frame=''>-0.0278 0.221 1.2365 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_hand_link'>
+          <pose frame=''>-0.0422 0.211 0.948 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_index1_link'>
+          <pose frame=''>-0.0437 0.1768 0.829 -0.1 0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_index2_link'>
+          <pose frame=''>-0.0437 0.174206 0.79313 -0.1 0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_index3_link'>
+          <pose frame=''>-0.0437 0.17181 0.76925 -0.1 0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_middle1_link'>
+          <pose frame=''>-0.04395 0.204 0.82475 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_middle2_link'>
+          <pose frame=''>-0.04395 0.204 0.78585 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_middle3_link'>
+          <pose frame=''>-0.04395 0.2045 0.75995 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_pinky1_link'>
+          <pose frame=''>-0.0422 0.238 0.8925 -0.7 0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_pinky2_link'>
+          <pose frame=''>-0.0422 0.258495 0.845428 0.23 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_pinky3_link'>
+          <pose frame=''>-0.0422 0.266049 0.815358 0.23 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_pinky4_link'>
+          <pose frame=''>-0.0422 0.27118 0.795197 0.23 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_ring1_link'>
+          <pose frame=''>-0.0422 0.21805 0.8686 -0.7 0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_ring2_link'>
+          <pose frame=''>-0.04094 0.234202 0.833292 0.0775 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_ring3_link'>
+          <pose frame=''>-0.04094 0.237372 0.798934 0.0775 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_ring4_link'>
+          <pose frame=''>-0.04094 0.239543 0.776134 0.0775 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_shoulder_base_link'>
+          <pose frame=''>0 0.143 1.56 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_shoulder_link'>
+          <pose frame=''>0 0.155 1.52 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_thumb1_link'>
+          <pose frame=''>-0.0422 0.182 0.8903 -0.1 0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_thumb2_link'>
+          <pose frame=''>-0.04272 0.153588 0.880085 -0.921323 -0.129048 -0.288983</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='l_thumb3_link'>
+          <pose frame=''>-0.048053 0.126094 0.859095 -0.921323 -0.129048 -0.288983</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_bicep_link'>
+          <pose frame=''>0 -0.221 1.46 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_eyesupport_link'>
+          <pose frame=''>0.076206 0.03198 1.7925 0 0 -0.000185</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_forearm_link'>
+          <pose frame=''>-0.0278 -0.221 1.2365 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_hand_link'>
+          <pose frame=''>-0.0422 -0.211 0.948 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_index1_link'>
+          <pose frame=''>-0.0437 -0.1768 0.829 0.1 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_index2_link'>
+          <pose frame=''>-0.0437 -0.172216 0.793329 0.1 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_index3_link'>
+          <pose frame=''>-0.0437 -0.16982 0.769449 0.1 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_middle1_link'>
+          <pose frame=''>-0.04395 -0.204 0.82475 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_middle2_link'>
+          <pose frame=''>-0.04395 -0.204 0.78585 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_middle3_link'>
+          <pose frame=''>-0.04395 -0.2035 0.75995 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_pinky1_link'>
+          <pose frame=''>-0.0422 -0.238 0.8925 0.7 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_pinky2_link'>
+          <pose frame=''>-0.0422 -0.258495 0.845428 -0.23 0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_pinky3_link'>
+          <pose frame=''>-0.0422 -0.265075 0.81513 -0.23 0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_pinky4_link'>
+          <pose frame=''>-0.0422 -0.269428 0.794786 -0.23 0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_ring1_link'>
+          <pose frame=''>-0.0422 -0.21805 0.8686 0.7 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_ring2_link'>
+          <pose frame=''>-0.04094 -0.234202 0.833292 -0.0775 0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_ring3_link'>
+          <pose frame=''>-0.04094 -0.236375 0.798856 -0.0775 0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_ring4_link'>
+          <pose frame=''>-0.04094 -0.237749 0.775994 -0.0775 0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_shoulder_base_link'>
+          <pose frame=''>0 -0.143 1.56 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_shoulder_link'>
+          <pose frame=''>0 -0.155 1.52 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_thumb1_link'>
+          <pose frame=''>-0.0422 -0.182 0.8903 0.1 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_thumb2_link'>
+          <pose frame=''>-0.04272 -0.153588 0.880085 0.921323 -0.129048 0.288983</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='r_thumb3_link'>
+          <pose frame=''>-0.048053 -0.126094 0.859095 0.921323 -0.129048 0.288983</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='top_stomach_link'>
+          <pose frame=''>0 0 1.152 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='torso_link'>
+          <pose frame=''>0 0 1.262 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose frame=''>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>3.37424 -2.50465 2.04491 0 0.275643 2.35619</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
+</sdf>
